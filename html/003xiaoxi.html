@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>消息</title>
+  <!-- import CSS -->
+  <script src="../js/vue.js"></script>    
+ <!--解决ui组件不适配问题-->
+ <meta  charset="utf-8" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<!--移动适配-->  
+ <script type="text/javascript" src="../js/yidong.js"></script>
+ <link rel="stylesheet" type="text/css" href="../css/yidong.css"/>
+  
+ <script src="../node_modules/_vant@1.3.5@vant/lib/vant.js"></script>
+ <link rel="stylesheet" href="../node_modules/_vant@1.3.5@vant/lib/vant-css/index.css">
+ 	<!--<link rel="stylesheet" href="https://unpkg.com/vant/lib/vant-css/index.css">
+  <script src="https://unpkg.com/vant/lib/vant.min.js"></script>-->
+  
+  <style type="text/css">
+  	body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{margin:0;padding:0;border:0;} body{background:#fff;color:#333;font-size:12px;}  ul,ol{list-style-type:none;} select,input,img,select{vertical-align:middle;}  a{text-decoration:none;} a:link{color:#009;} a:visited{color:#800080;} a:hover,a:active,a:focus{color:#c00;text-decoration:underline;}
+  		div{box-sizing: border-box;}
+  		.btn_box{
+  		width: 100%;
+  		height: 1.306666rem;
+  		text-align: center;
+  		border-top: 0.006666rem solid rgba(222,222,222,1);
+  		position:fixed ;
+  		bottom: 0;
+  		left: 0;
+  		
+  		background: white;
+  	}
+  	.btn_box div{
+  		width: 0.6rem;
+  		height: 100%;
+  		float: left;
+  		/*background: deepskyblue;*/
+  		text-align: center;
+  	}
+  	.btn_box img{
+  		width: 0.52rem;
+  		height:0.426666rem;
+  		margin-top: 0.2rem;
+  		margin-bottom: 0.106666rem;
+  	}
+  	.btn_box p{
+  		font-size: 0.293333rem;
+  		color: #BE1B1B;
+  	}
+  	#top{
+  		width: 100%;
+  		height: 3.866666rem;
+  		background: white;
+  		/*border-top: 0.013333rem solid #DEDEDE;*/
+  	}
+  	.xiang{
+  		width: 100%;
+  		height: 1.933333rem;
+  		border-bottom: 0.013333rem solid #DEDEDE;
+  		line-height: 1.933333rem;
+  		
+  	}
+  	
+  	.q{
+  		 width: 1.133333rem;
+  		 height: 1.133333rem;
+  		 float: left;
+  		 margin-top: 0.4rem;
+  	}
+  	.p{
+  		font-size: 0.426666rem;
+  		float: left;
+  		margin-left: 0.4rem;
+  	}
+  	.i{
+  		 width: 0.173333rem;
+  		 height: 0.32rem;
+  		 float: right;
+  		 margin-left: 0.266666rem;
+  		 margin-top: 0.83rem;
+  	}
+  	.shu{
+  		font-size: 0.426666rem;
+  		color: #BE1B1B;
+  		float: right;
+  	}
+  	#app2{
+  		 width: 100%;
+  		 
+  	}
+  </style>
+</head>
+<body>
+  <div id="app" style="width: 100%;float: left;">
+  	<van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+  	<div id="app2">
+  	 <div id='top'>
+  	 	   <div style="width: 9.2rem;height: 100%;margin: 0 auto;">
+  	 	   	   <div @click="pin" class="xiang">
+  	 	   	   	   <img class="q" src="../img/banwu_img/pinglun2@2x.png" alt="" />
+  	 	   	   	   <p class="p">评论</p>
+  	 	   	   	   <img class="i" src="../img/next@2x.png" alt="" />
+  	 	   	   	   <p class="shu">99+</p>
+  	 	   	   </div>
+  	 	   	   
+  	 	   	    <div @click="zan" class="xiang" style="border: none;">
+  	 	   	   	   <img class="q" src="../img/banwu_img/zan.png" alt="" />
+  	 	   	   	   <p class="p">赞</p>
+  	 	   	   	   <img class="i" src="../img/next@2x.png" alt="" />
+  	 	   	   	   <p class="shu">99+</p>
+  	 	   	   </div>
+  	 	   </div>
+  	 </div>
+  	</div> 
+   </van-pull-refresh>
+    <div class="btn_box">
+       <div style="height:100%;width:7.173333rem;position:absolute;left: 0;right: 0;top: 0;bottom: 0;margin:auto;">
+    	<div @click="ke_tang" style=""><img style="margin-left:0.04rem;" src="../img/ketang_hui@2x.png" alt="" /><p style="color:#999999;">课堂</p></div>
+    	<div @click="banwu" style="margin-left: 2.733333rem;"><img  style="width: 0.413333rem;height: 0.453333rem;margin-left:0.02rem" src="../img/banwu_hui@2x.png" alt="" /><p style="color: #999999;">班务</p></div>	
+    	<div style="float: right;"><img style="width: 0.52rem;height: 0.493333rem;" src="../img/xiaoxi_hong@2x.png" alt="" /><p style="color: #BE1B1B;">消息</p></div>	
+       </div>
+     </div>
+  </div>
+</body>
+
+ 
+ 
+
+  <script>
+    new Vue({
+    	
+      el: '#app',
+      data: function(){
+        return {
+        	isLoading: false,
+        	
+        }
+      },
+      methods:{
+      	pin(){
+      		location.href = './003pin_lun.html'
+      	},
+      	zan(){
+      		location.href = './003dian_zan.html'
+      	},
+      	 ke_tang(){
+      	 	location.href = './ke_tang.html'
+      	 },
+      	 banwu(){
+      	 	location.href = './002ban_wu.html'
+      	 },
+      	 onRefresh() {
+      setTimeout(() => {
+        this.$toast({message:'刷新成功',duration:800});
+        this.isLoading = false;
+        this.count++;
+      }, 500);
+    },
+    
+       
+      },
+      mounted(){
+      	 document.getElementById('app').style.height = document.documentElement.clientHeight+'px';
+      	  document.getElementById('app2').style.height = document.documentElement.clientHeight+'px';
+      	 document.getElementById('app2').style.background = '#F5F5F5';
+      }
+      
+    })
+  </script>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>绑定手机号</title>
+  <!-- import CSS -->
+   <!-- import Vue before Element -->
+   <script src="../js/vue.js"></script>    
+   
+   <meta  charset="utf-8" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <!-- import JavaScript -->
+  <!--移动适配-->
+  <script type="text/javascript" src="../js/yidong.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/yidong.css"/>
+  <style type="text/css">
+  	body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{margin:0;padding:0;border:0;} body{background:#fff;color:#333;font-size:12px; }  ul,ol{list-style-type:none;} select,input,img,select{vertical-align:middle;}  a{text-decoration:none;} a:link{color:#009;} a:visited{color:#800080;} a:hover,a:active,a:focus{color:#c00;text-decoration:underline;}
+  		div{box-sizing: border-box;}
+  	#app{
+  	   width: 100%;
+  	   height: 9.333333rem;
+  	   background: white;
+  	}
+  	#tops{
+  		width: 100%;
+  		height: 0.973333rem;background: rgba(245,245,245,1);
+  		font-size:0.373333rem;
+font-family:FZLanTingHei-R-GBK;
+font-weight:400;
+line-height:1rem;
+color:rgba(153,153,153,1);
+text-align: center;
+  	}
+  	#sa p{
+  		font-size:0.32rem;
+font-family:Muli;
+font-weight:600;
+line-height:0.386666rem;
+color:rgba(0,0,0,1);
+/*opacity:0.3;*/
+margin-bottom: 0.166666rem;
+opacity:0.3;
+  	}
+  	#sa input{
+  		 border: none;
+  		 /*border-bottom: 0.013333rem solid #999999;*/
+  		 height: 0.956666rem;
+  		 line-height: 1.026666rem;
+  		 font-size: 0.426666rem;
+  		 width: 100%;
+  	}
+  	
+  	input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+     color:rgba(222,222,222,1);font-size:0.426666rem;
+    }
+    #inps{
+       /*border: none;*/
+       width: 4.666666rem;
+    }
+  	.btn{
+  		width: 2.453333rem;
+  		height: 0.826666rem;
+  		border: none;
+  		border-radius: 0.413333rem;
+  		background: rgba(232,94,94,1);
+  		font-size: 0.373333rem;
+  		color: white;
+  		position: absolute;
+  		right: 0;
+  		
+  	}
+  	.btnsa{
+  		width: 4.426666rem;
+  		height: 1.226666rem;
+  		line-height: 1.226666rem;
+  		background:rgba(222,222,222,1);
+border-radius:0.626666rem;
+opacity:1;
+      font-size:0.426666rem;
+font-family:Muli;
+font-weight:400;
+/*line-height:0.506666rem;*/
+color:rgba(255,255,255,1);
+opacity:1;
+border: none;
+margin: auto;
+text-align: center;
+margin-top: 1.466666rem;
+  	}
+  	
+  	#yans{
+  		 width:3rem;float:left;border:none;
+  		 border-bottom: none;
+  	}
+  </style>
+</head>
+<body>
+  <div id="app">
+      <div id="tops" style="">为了您的账号安全，请绑定手机号码</div>
+      <div id="sa" style="width: 8.053333rem;height:6.08rem;margin: 1.653333rem auto;position: relative;">
+      	 <p>手机号</p>
+      	 <div style="width: 100%;height: 1.026666rem;border-bottom:0.026666rem solid #DEDEDE;">
+      	   <input  maxlength="11" @input="inpj()" type="text" v-model="value13" placeholder="请输入手机号" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"  />	
+      	 </div>
+      	 
+      	 <p style="margin-top: 0.4rem;">验证码</p>
+      	 <div style="width: 100%; height:1.026666rem;position: relative;border-bottom:0.026666rem solid #DEDEDE;">
+      	    <input maxlength="10" @input="inpj()" type="text" v-model="value14" id="yans" style="" placeholder="手机验证码" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"  />	
+      	    
+      	    <button v-show="sendAuthCode" @click="getAuthCode" class="btn">获取验证码</button>
+      	    <button style="background: #DEDEDE;" v-show="!sendAuthCode" class="btn">{{auth_time}}</button>
+      	 </div>
+      	 
+      	 <div v-show="btn_show==false" class="btnsa">确定</div>
+      	 <div @click="tiao" v-show="btn_show" style="background: #BE1B1B;" class="btnsa">确定</div>
+      	 
+      </div>
+  </div>
+</body>
+  
+  
+  
+  <script>
+    new Vue({
+      el: '#app',
+      data: function(){
+        return {
+        	value13: '',
+          value14: '',
+          btn_show:false,
+          
+          auth_time:0,
+        	sendAuthCode:true,
+        }
+      },
+      methods:{
+      	 inpj(){
+      	 	  this.btn_show = (this.value13!=''&&this.value14!='')?true:false; 
+      	 },
+      	 getAuthCode(){//倒计时函数
+            this.sendAuthCode = false;
+            this.auth_time = 60;
+            var auth_timetimer =  setInterval(()=>{
+                this.auth_time--;
+                if(this.auth_time<=0){
+                    this.sendAuthCode = true;
+                    clearInterval(auth_timetimer);
+                }
+            }, 1000);
+        },
+        tiao(){
+        	location.href = './ke_tang.html'
+        },
+   
+      }
+      
+    })
+  </script>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>考勤记录</title>
+  <!-- import CSS -->
+  <meta  charset="utf-8" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <script type="text/javascript" src="../js/yidong.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/yidong.css"/>
+   <script src="../js/vue.js"></script>   
+  
+  <style type="text/css">
+  	body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{margin:0;padding:0;border:0;} body{background:#fff;color:#333;font-size:12px; }  ul,ol{list-style-type:none;} select,input,img,select{vertical-align:middle;}  a{text-decoration:none;} a:link{color:#009;} a:visited{color:#800080;} a:hover,a:active,a:focus{color:#c00;text-decoration:underline;}
+  	#app{
+  		width: 100%;
+  		height: auto;
+  		float: left;
+  		/*background: #F5F5F5;*/
+  		/*padding-bottom: 1.693333rem;*/
+  	}
+  	.pa{
+  		font-size: 0.426666rem;
+  		/*font-weight: bold;*/
+  		float: left;
+  	}
+  	.pc{
+  		font-size: 0.32rem;
+  		color: #999999;
+  		margin-left: 0.553333rem;
+  	}
+  	#a1 p,img {
+  		float: left;
+  	}
+  	#a1 img{
+  		width: 0.266666rem;
+  		height: 0.146666rem;
+  	}
+  	#leftb{
+  		width: 2.76rem;
+  		height: 0.6rem;
+  		margin-top: 0.2rem;
+  		float: left;
+  		border-right: 0.013333rem solid #DEDEDE;
+  		line-height: 0.6rem;
+  		margin-left: 0.4rem;
+  	}
+  	#top2{
+  		width: 100%;
+  		height: 0.706666rem;
+  		background: #F5F5F5;
+  		text-align: center;
+  		line-height: 0.706666rem;
+  		font-size: 0.32rem;
+  		color: #999999;margin-top: 0.066666rem;
+  		margin-bottom: 0.12rem;
+  	}
+  	.lie{
+  		width: 9.2rem;
+  		/*height: 2.733333rem;*/
+  		border-bottom: 0.013333rem solid #DEDEDE;
+  		margin-top: 0.28rem;
+  		margin: auto;
+  		background: white;
+  	}
+  	.psf{
+  		font-size: 0.373333rem;
+  		margin: 0.4rem 0 0.293333rem 0;
+  	}
+  	.lies{
+  		width: 100%;
+  		height: 0.546666rem;
+  		margin:0 0 0.32rem 0;
+  		line-height: 0.546666rem;
+  		font-family: 'PingFang SC';
+  		
+  	}
+  	.lies img{
+  		width: 0.546666rem;
+  		height: 0.546666rem;
+  		float: left;
+  	}
+  	.lies a{
+  		float: left;
+  		font-size: 0.373333rem;
+  		margin-left: 0.266666rem;
+  	}
+  	.lies p{
+  		float: right;
+  		font-size: 0.293333rem;
+  		color: #999999;
+  	}
+  </style>
+</head>
+<body>
+  <div id="app">
+     <div id="a1" style="width: 100%;height: 0.96rem;border-top: 0.006666rem solid #DEDEDE;line-height: 0.96rem;">
+     	 <div id="leftb">
+     	 	<p class="pa">全部考勤</p><img style="margin:0.226666rem 0 0 0.4rem;" src="../img/shouqi@2x.png"/>
+     	 </div>
+     	 <p class="pc">前一天</p>
+     	 <span><p style="margin-left: 0.4rem;" class="pa">18年10月<a style="margin: 0;" class="pc">本月</a></p><img style="margin:0.413333rem 0 0 0.333333rem;" src="../img/shouqi@2x.png"/></span>
+         <p style="margin-left: 0.4rem;" class="pc">后一天</p>
+     </div>
+     <div id="top2">2018/06/01-2018/06/31</div>
+     
+     <div class="lie">
+       <p class="psf">2018-09-28（今日）</p>	
+       
+       <div class="lies">
+       	   <img src="../img/zaotui@2x.png"/> <a style="color: #A4CC59;">早退</a> <p>10:37:30由程老师记录</p>
+       </div>	  
+       <div class="lies">
+       	   <img src="../img/qingjia@3x.png"/> <a style="color: #FC6161;">请假</a> <p>10:37:30由程老师记录</p>
+       </div>		  
+       <div class="lies">
+       	   <img src="../img/zhengcahngxiake@3x.png"/> <a style="color: #6786ED;">正常下课</a> <p>10:37:30由程老师记录</p>
+       </div>	
+       <div class="lies">
+       	   <img src="../img/zhengchangchuqin@3x.png"/> <a style="color: #4FC6CB;">正常出勤</a> <p>10:37:30由程老师记录</p>
+       </div>	
+       <div class="lies">
+       	   <img src="../img/kuangke@3x.png"/> <a style="color: #E67BC9;">旷课</a> <p>10:37:30由程老师记录</p>
+       </div>	
+       <div class="lies">
+       	   <img src="../img/chidao@3x.png"/> <a style="color: #EDB22C;">迟到</a> <p>10:37:30由程老师记录</p>
+       </div>	
+       
+     </div>	
+     
+     
+  </div>
+</body>
+	 
+ <!--移动适配-->
+  
+  
+  <!-- import JavaScript -->
+  <script>
+  	
+    new Vue({
+      el: '#app',
+      data: function(){
+        return {
+        	
+        	
+        }
+      },
+      
+      
+    })
+  </script>
+</html>

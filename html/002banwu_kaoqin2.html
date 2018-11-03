@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>考勤记录</title>
+  <!-- import CSS -->
+  
+   <script src="../js/vue.js"></script>    
+ <!--解决ui组件不适配问题-->
+ <meta  charset="utf-8" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<!--移动适配-->  
+ <script type="text/javascript" src="../js/yidong.js"></script>
+ <link rel="stylesheet" type="text/css" href="../css/yidong.css"/>
+  
+ <script src="../node_modules/_vant@1.3.5@vant/lib/vant.js"></script>
+ <link rel="stylesheet" href="../node_modules/_vant@1.3.5@vant/lib/vant-css/index.css">
+ 	<!--<link rel="stylesheet" href="https://unpkg.com/vant/lib/vant-css/index.css">
+  <script src="https://unpkg.com/vant/lib/vant.min.js"></script>-->
+  
+  <style type="text/css">
+  	body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{margin:0;padding:0;border:0;} body{background:#fff;color:#333;font-size:12px;}  ul,ol{list-style-type:none;} select,input,img,select{vertical-align:middle;}  a{text-decoration:none;} a:link{color:#009;} a:visited{color:#800080;} a:hover,a:active,a:focus{color:#c00;text-decoration:underline;}
+  		div{box-sizing: border-box;}
+  		.top{
+  			width: 100%;
+  			background: white;
+  		}
+  		.shou{
+  			width: 100%;
+  			height: 1.173333rem;
+  			border-top: 1px solid #DEDEDE;
+  			text-align: center;
+  			position: relative;
+  		}
+  		.shou input{
+  		width: 9.2rem;
+  		height: 0.906666rem;
+  		background: #F8F8F8;
+  		border: none;
+  		border-radius: 0.453333rem;
+  		text-align: center;
+  		margin-top: 0.133333rem;
+  	  }
+  
+    #a1 p,img {
+  		float: left;
+  	}
+  	#a1 img{
+  		width: 0.266666rem;
+  		height: 0.146666rem;
+  	}
+  	#leftb{
+  		width: 2.76rem;
+  		height: 0.6rem;
+  		margin-top: 0.2rem;
+  		float: left;
+  		border-right: 0.013333rem solid #DEDEDE;
+  		line-height: 0.6rem;
+  		margin-left: 0.4rem;
+  	}
+  	#top2{
+  		width: 100%;
+  		background: #F5F5F5;
+  		text-align: center;
+  		line-height:0.533333rem;
+  		font-size: 0.32rem;
+  		color: #999999;margin-top: 0.066666rem;
+  	}
+  	.pa{
+  		font-size: 0.426666rem;
+  		float: left;
+  	}
+  	.pc{
+  		font-size: 0.32rem;
+  		color: #999999;
+  		margin-left: 0.553333rem;
+  	}
+  	.box{
+  		width: 100%;
+  		
+  	}
+  	.shi{
+  		font-size: 0.426666rem;
+  		padding-left:0.453333rem;
+  		color: #999999;
+  		line-height:0.9rem;
+  		background: #F5F5F5;
+  	}
+  	.boxs{
+    	width:100%;
+    	height: 1.813333rem;
+    	background: white;
+    	border-bottom: 0.013333rem solid #DEDEDE;
+    	line-height: 1.813333rem;
+    	padding-left: 0.4rem;
+    	position: relative;
+    }
+     .img_box{
+     	width: 1.28rem;
+     	height: 1.28rem;
+     	float: left;
+     	margin: 0.266666rem 0.266666rem 0 0;
+     	background: yellowgreen;
+     	border-radius: 50%;
+     }
+     .name{
+     	font-size: 0.373333rem;
+     	float: left;
+     	margin: 0;
+     }
+     .img_tai{
+     	width: 0.546666rem;
+     	height: 0.546666rem;
+     	position: absolute;
+     	top: 0.626666rem;
+     	left:7.106666rem;
+     }
+     .ps{
+     	font-size: 0.373333rem;
+     	
+     	position: absolute;
+     	left: 7.92rem;
+     	
+     }
+     .zuo{
+     	width: 0.173333rem;
+     	height: 0.32rem;
+     	float: right;
+     	margin:0.746666rem 0.4rem 0 0;
+     }
+     #inpp{
+  		 font-size: 0.426666rem;
+  		 color: #DEDEDE;
+  		 position: absolute;
+  		 left: 4rem;
+  		 top: 0.293333rem;
+  	}
+  	#inpimg{
+  		 	width: 0.4rem;
+  		 	height: 0.4rem;
+  		 position: absolute;
+  		 left:3.44rem;
+  		 top: 0.36rem;
+  	}
+  </style>
+</head>
+<body>
+  <div id="app" style="width: 100%;float: left;">
+  	 <div class="top">
+  	 	
+  	  	<div class="shou">
+  	  		<p id="inpp" v-show="inps" @click="jiaos">搜索学生姓名</p>
+  	  	  <img id="inpimg"  v-show="inps"  @click="jiaos" src="../img/sousuo@3x.png" alt="" />
+  	  		<input v-model="inpv" id="inp" @blur.prevent="changeCount()" @focus="inps=false" @input="changeCount()" type="text"  />
+  	  	</div>
+  	  	
+  	  	
+  	  <div id="a1" style="width: 100%;height: 0.96rem;border-top: 0.006666rem solid #DEDEDE;line-height: 0.96rem;">
+     	 <div id="leftb">
+     	 	<p class="pa">{{title}}</p><img style="margin:0.226666rem 0 0 0.4rem;" src="../img/shouqi@2x.png"/>
+     	 </div>
+     	 <p class="pc">前一天</p>
+     	 <span><p style="margin-left: 0.4rem;" class="pa">18年10月<a style="margin: 0;" class="pc">本月</a></p><img style="margin:0.413333rem 0 0 0.333333rem;" src="../img/shouqi@2x.png"/></span>
+         <p style="margin-left: 0.4rem;" class="pc">后一天</p>
+      </div>
+     <div id="top2">2018/06/01-2018/06/31</div>	
+  	</div>
+  	 
+    <div class="box">
+  	  	<div class="shi">2018/06/31</div>
+  	  	 <div class="boxs" @click="show2=!show2" >
+  	  	  <div class="img_box"></div>
+  	  	  <p class="name">Alex </p>
+  	  	  <!--<img class="zuo" src="../img/next@2x.png"/>-->
+  	  	  <p style="color: #6786ED;" class="ps">正常下课</p>
+  	  	  <img class="img_tai" src="../img/zhengcahngxiake@3x.png"/>
+  	   </div>	  
+  	   
+  	   <div class="boxs" @click="show2=!show2" >
+  	  	  <div class="img_box"></div>
+  	  	  <p class="name">Alex </p>
+  	  	  <!--<img class="zuo" src="../img/next@2x.png"/>-->
+  	  	  <p style="color: #A4CC59;" class="ps">早退</p>
+  	  	  <img class="img_tai" src="../img/zaotui@2x.png"/>
+  	   </div>	
+  	   
+  	   <div class="boxs" @click="show2=!show2" >
+  	  	  <div class="img_box"></div>
+  	  	  <p class="name">Alex </p>
+  	  	  <!--<img class="zuo" src="../img/next@2x.png"/>-->
+  	  	  <p style="color: #E67BC9;" class="ps">旷课</p>
+  	  	  <img class="img_tai" src="../img/kuangke@3x.png"/>
+  	   </div>	
+  	   
+  	   <div class="boxs" @click="show2=!show2" >
+  	  	  <div class="img_box"></div>
+  	  	  <p class="name">Alex </p>
+  	  	  <!--<img class="zuo" src="../img/next@2x.png"/>-->
+  	  	  <p style="color: #FC6161;" class="ps">请假</p>
+  	  	  <img class="img_tai" src="../img/qingjia@3x.png"/>
+  	   </div>	
+  	  	
+  	   <div class="boxs" @click="show2=!show2" >
+  	  	  <div class="img_box"></div>
+  	  	  <p class="name">Alex </p>
+  	  	  <!--<img class="zuo" src="../img/next@2x.png"/>-->
+  	  	  <p style="color: #4FC6CB;" class="ps">正常出勤</p>
+  	  	  <img class="img_tai" src="../img/zhengchangchuqin@3x.png"/>
+  	   </div>	
+  	   
+  	   <div class="boxs" @click="show2=!show2" >
+  	  	  <div class="img_box"></div>
+  	  	  <p class="name">Alex </p>
+  	  	  <!--<img class="zuo" src="../img/next@2x.png"/>-->
+  	  	  <p style="color: #EDB22C;" class="ps">迟到</p>
+  	  	  <img class="img_tai" src="../img/chidao@3x.png"/>
+  	   </div>	
+  	   
+  	  	
+    </div> 
+  	  
+    
+  </div>
+</body>
+
+ 
+
+
+  <script>
+    new Vue({
+    	
+      el: '#app',
+      computed:{
+      	 title(){
+      	 	return localStorage.title
+      	 },
+      },
+      data: function(){
+        return {
+        	inps:true,
+        	inpv:'',
+        	
+        }
+      },
+      methods:{
+      	 jiaos(){
+      	 	   this.inps = false;
+      	 	   document.getElementById('inp').focus();
+      	 },
+      	 changeCount(){
+      	 	   this.inpv == ''?this.inps=true:this.inps=false;
+      	 },
+       
+      },
+      mounted(){
+      	
+      }
+      
+    })
+  </script>
+</html>

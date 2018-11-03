@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>课堂</title>
+  <!-- import CSS -->
+   <script src="../js/vue.js"></script>    
+ 
+ <!--解决ui组件不适配问题-->
+ <meta  charset="utf-8" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+ 
+<!--移动适配-->  
+ <script type="text/javascript" src="../js/yidong.js"></script>
+ <link rel="stylesheet" type="text/css" href="../css/yidong.css"/>
+  
+ <script src="../node_modules/_vant@1.3.5@vant/lib/vant.js"></script>
+ <link rel="stylesheet" href="../node_modules/_vant@1.3.5@vant/lib/vant-css/index.css">
+ 	<!--<link rel="stylesheet" href="https://unpkg.com/vant/lib/vant-css/index.css">
+  <script src="https://unpkg.com/vant/lib/vant.min.js"></script>-->
+  
+  <style type="text/css">
+  	body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{margin:0;padding:0;border:0;} body{background:#fff;color:#333;font-size:12px; }  ul,ol{list-style-type:none;} select,input,img,select{vertical-align:middle;}  a{text-decoration:none;} a:link{color:#009;} a:visited{color:#800080;} a:hover,a:active,a:focus{color:#c00;text-decoration:underline;}
+  	div{box-sizing: border-box;}
+  		
+  	
+  	.btn_box{
+  		width: 100%;
+  		height: 1.306666rem;
+  		text-align: center;
+  		border-top: 0.006666rem solid rgba(222,222,222,1);
+  		position:fixed ;
+  		bottom: 0;
+  		left: 0;
+  		/*background: red;*/
+  		background: white;
+  	}
+  	.btn_box div{
+  		width: 0.6rem;
+  		height: 100%;
+  		float: left;
+  		/*background: deepskyblue;*/
+  		text-align: center;
+  	}
+  	.btn_box img{
+  		width: 0.52rem;
+  		height:0.426666rem;
+  		margin-top: 0.2rem;
+  		margin-bottom: 0.106666rem;
+  	}
+  	.btn_box p{
+  		font-size: 0.293333rem;
+  		color: #BE1B1B;
+  	}
+  	
+  	/*----------------------------------------------------------------------------------------------------------*/
+  	
+  	#wu{
+  		width:5.04rem;
+  		height: 5.333333rem;
+  		margin: 3.6rem auto;
+  		text-align: center;
+  	}
+  	.tops{
+  		width: 100%;
+  		height: 0.973333rem;
+  		background: #F5F5F5;
+  		/*text-align: center;*/
+  		font-size: 0.373333rem;
+  		line-height: 0.973333rem;
+  		/*position: relative;*/
+  		/*margin-bottom: 0.813333rem;*/
+  		position: fixed;
+  		top: 0;
+  		left: 0;
+  		z-index: 2;
+  	}
+  	.tops p{
+  		float: left;
+  	}
+  	.tops img{
+  		width: 0.266666rem;
+  		height: 0.146666rem;
+  	  float: left;
+  	  margin: 0.413333rem 0 0 0.133333rem;
+  	}
+  	.xue{
+  		width: 1.6rem;
+  		height: 2.266666rem;
+  		float: left;
+  		text-align: center;
+  		margin-bottom:0.56rem;
+  		margin-left:0.733333rem;
+  	}
+  	.xue img{
+  		width: 1.6rem;
+  		height: 1.6rem;
+  	}
+  	.xue p{
+  		font-size: 0.36rem;
+  		color: #999999;
+  		margin-top: 0.213333rem;
+  	}
+  	.kao{
+  		width: 2rem;
+  		height: 2rem;
+  		position: fixed;
+  		bottom: 2.613333rem;
+  		right: 0.24rem;
+  	}
+  	#ale{
+  		width: 100%;
+  		background:rgba(0,0,0,0.7);
+  		position: fixed;
+  		top: 0;
+  		left: 0;
+  		z-index: 2;
+  	}
+  	.imgbox{
+  		width: 2.3rem;
+  		height: 2.506666rem;
+  		float: left;
+  		margin-top: 0.746666rem;
+  		text-align: center;
+  	}
+  	.imgbox img{
+  		 width: 1.72rem;
+  		 height: 1.706666rem;
+  	}
+  	.imgbox p{
+  		font-size: 0.426666rem;
+  		color: #999999;
+  		margin-top: 0.4rem;
+  	}
+  	#dle2{
+  			width: 100%;
+  		background:rgba(0,0,0,0.7);
+  		position: fixed;
+  		top: 0;
+  		left: 0;
+  		z-index: 2;
+  	}
+  </style>
+</head>
+<body>
+  <div id="app" style="width: 100%;float: left;">
+  	 <!--
+       	作者：2443611475@qq.com
+       	时间：2018-10-10
+       	描述：没有学生显示的
+       -->
+     <div v-show="false" id="wu">
+     	<img style="width: 2.8rem;height:2.8rem;" src="../img/weitianjiatouxiang@2x.png"/>
+     	<p style="font-size: 0.426666rem;font-weight: 600;margin-top: 0.8rem;">还没有学生！</p>
+     	<p style="font-size: 0.373333rem;color: #999999;margin-top: 0.266666rem;">添加学生后才可以进行管理哦~</p>
+     </div>
+   <!--
+       	作者：2443611475@qq.com
+       	时间：2018-10-10
+       	描述：有学生
+       -->
+   <div>
+   	   <div @click="show2=!show2" class="tops">
+   	    	<div style="width:2.266666rem;height: 100%;margin: auto;">
+   	    		<p>{{ding_vuale}}</p><img src="../img/shouqi@2x.png"/>
+   	    	</div>
+   	   </div>
+   	   <div style="width: 100%;height:0.96rem;margin-bottom: 0.813333rem;"></div>
+   	   
+   	 <div style="width: 100%;padding-bottom: 1.666666rem;float: left;">
+   	 	<div @click="tiao()" v-for="i in 30" class="xue">
+   	   	   <img src="../img/lixiaomeng@2x.png"/>
+   	   	   <p>李小萌</p>
+   	   </div>
+   	 </div> 
+   	   
+   	 <img class="kao" @click="show=!show" src="../img/kaoqin@2x.png"/>
+   	 
+   	<div v-show="show" @click="show = false" @touchmove.prevent id="ale">
+   		 <van-popup style='height:5.733333rem;border-radius:0.533333rem 0.533333rem 0 0;text-align: center;' v-model="show" position="bottom" :overlay="false">
+              <p style="font-size: 0.48rem;font-weight:600;line-height: 1.36rem;">请选择您要考勤的类型</p>
+              <div @click="shangke" style="margin: 0.746666rem 2rem 0 1.7rem;" class="imgbox"><img src="../img/shangke@3x.png"/><p>上课考勤</p></div>
+              <div @click="xiake" class="imgbox"><img src="../img/xiakekaoqin@3x.png"/><p>下课考勤</p></div>
+       </van-popup>
+   	</div>
+   	
+   	<div v-show="show2" id='dle2' @click='show2=false'>
+   		  <van-popup style='' v-model="show2" position="bottom" :overlay="false">
+             <van-picker
+              show-toolbar
+              title=""
+              :columns="columns"
+              @cancel="onCancel"
+              @confirm="onConfirm"
+              @change='ve'
+            />
+       </van-popup>
+   	</div>
+   	 
+   	 
+   </div>
+  <!--
+  	作者：2443611475@qq.com
+  	时间：2018-10-10
+  	描述：底部标签
+  -->  
+    <div class="btn_box" style="">
+    	
+    	<div style="height:100%;width:7.173333rem;position:absolute;left: 0;right: 0;top: 0;bottom: 0;margin:auto;">
+    		<div style=""><img src="../img/ketang_hong@2x.png" alt="" /><p>课堂</p></div>
+    	  <div @click="banwu" style="margin-left: 2.733333rem;"><img style="width: 0.413333rem;height: 0.453333rem;" src="../img/banwu_hui@2x.png" alt="" /><p style="color: #999999;">班务</p></div>	
+    	  <div @click="xiao" style="float: right;"><img style="width: 0.52rem;height: 0.493333rem;" src="../img/xiaoxi_hui@2x.png" alt="" /><p style="color: #999999;">消息</p></div>	
+    	</div>
+    	
+    		
+    </div>
+    
+    
+  </div>
+</body>
+
+ 
+  <script>
+    new Vue({
+    	
+      el: '#app',
+      data: function(){
+        return {
+        	show:false,
+        	show2:false,
+        	ding_vuale:'篮球课A班',
+        	columns: ['篮球课A班', '篮球课b班', '篮球课c班', '篮球课d班', '篮球课f班'],
+        	
+        }
+      },
+      methods:{
+      	xiao(){
+      		location.href = './003xiaoxi.html'
+      	},
+      	 tiao(){
+      	 	location.href = './xue_sheng_zi_liao.html';//跳转学生资料
+      	 },
+      	 shangke(){
+      	 	location.href='./shang_ke_kao_qin.html'//跳转上课考勤
+      	 },
+      	 xiake(){
+      	 	location.href='./xia_ke_kao_qin.html'//跳转下课考勤
+      	 },
+      	 banwu(){
+      	 	location.href = './002ban_wu.html'
+      	 },
+      	 
+      	 
+         onConfirm(value, index) {
+//           Toast(`当前值：${value}, 当前索引：${index}`);
+             this.ding_vuale = value;
+         },
+         ve(value,index){
+         	   this.ding_vuale = index;
+//            console.log(index)
+         },
+        onCancel() {
+            this.show2=false;
+       }
+       
+      },
+      mounted(){
+      	document.getElementById('ale').style.height = document.documentElement.clientHeight+'px'
+      	document.getElementById('dle2').style.height = document.documentElement.clientHeight+'px'
+      }
+      
+    })
+  </script>
+</html>

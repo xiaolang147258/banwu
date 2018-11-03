@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>资料</title>
+  <!-- import CSS -->
+  
+   <script src="../js/vue.js"></script>    
+   <meta  charset="utf-8" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+ <!--移动适配-->
+  <script type="text/javascript" src="../js/yidong.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/yidong.css"/>
+  
+  <style type="text/css">
+  	body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{margin:0;padding:0;border:0;} body{background:#fff;color:#333;font-size:12px; }  ul,ol{list-style-type:none;} select,input,img,select{vertical-align:middle;}  a{text-decoration:none;} a:link{color:#009;} a:visited{color:#800080;} a:hover,a:active,a:focus{color:#c00;text-decoration:underline;}
+  	#app{
+  		width: 100%;
+  		height: auto;
+  		float: left;
+  		background: #F5F5F5;
+  		/*padding-bottom: 1.693333rem;*/
+  	}
+  	.top{
+  		width: 100%;
+  		height: 2.693333rem;
+  		background: #F5F5F5;
+  		text-align: center;
+  		padding-top: 0.5rem;
+  		box-sizing: border-box;
+  	}
+  	.top div{
+  		width:1.6rem;
+  		height:1.6rem;
+  		background: deepskyblue;
+  		border-radius: 50%;
+  		overflow: hidden;
+  		margin: auto;
+  		-moz-box-shadow:0px 4px 11px #858585; -webkit-box-shadow:0px 4px 11px #858585; box-shadow:0px 4px 11px #858585;
+  	}
+  	.tab{
+  		width: 100%;
+  		height: 1.32rem;
+  		border-top: 0.006666rem solid rgba(222,222,222,1);
+  		line-height: 1.32rem;
+  		padding-left: 0.4rem;
+  		padding-right: 0.4rem;
+  		box-sizing: border-box;
+  		background: white;
+  	}
+  	.p1{
+  		font-size: 0.426666rem;
+  		/*font-weight:600;*/
+  		float: left;
+  		font-family: 'FZLanTingHei-R-GBK';
+  		opacity:1;
+  	}
+  	.p2{
+  		font-size: 0.373333rem;
+  		float: right;
+  		color: #999999;
+  	}
+  	.tab img{
+  		width:0.186666rem;
+  		height:0.333333rem;
+  		float: right;
+  		margin-top: 0.506666rem;
+  	}
+  </style>
+</head>
+<body>
+  <div id="app">
+     <div class="top"><div></div></div>
+     	 
+     <div class="tab"><p class="p1">家长姓名</p><p class="p2">张小白</p></div>
+     <div class="tab"><p class="p1">学生姓名</p><p class="p2">张小白</p></div>
+     <div class="tab"><p class="p1">学生性别</p><p class="p2">张小白</p></div>
+     <div class="tab"><p class="p1">学生生日</p><p class="p2">张小白</p></div>
+     <div class="tab"><p class="p1">学籍号</p><p class="p2">张小白</p></div>
+     <div class="tab"><p class="p1">所在街道</p><p class="p2">张小白</p></div>
+     <div class="tab"><p class="p1">所在学校</p><p class="p2">张小白</p></div>
+     <div @click="kaoqin" class="tab" style="margin-top: 0.266666rem;"><p class="p1">考勤记录</p><img src="../img/next@2x.png" alt="" /></div>
+     
+   
+    
+  </div>
+</body>
+	
+  
+  
+  <!-- import JavaScript -->
+  <script>
+  	let app = document.getElementById('app');
+  	app.style.height = document.documentElement.clientHeight+'px'
+    new Vue({
+      el: '#app',
+      data: function(){
+        return {
+        	
+        	
+        }
+      },
+      methods:{
+      	kaoqin(){
+      		location.href = './kaoqin.html';
+      	},
+      	
+      }
+      
+    })
+  </script>
+</html>

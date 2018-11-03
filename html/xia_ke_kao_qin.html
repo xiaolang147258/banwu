@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>下课考勤</title>
+  <!-- import CSS -->
+  <script src="../js/vue.js"></script>    
+ 
+ <!--解决ui组件不适配问题-->
+ <meta  charset="utf-8" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+ 
+<!--移动适配-->  
+ <script type="text/javascript" src="../js/yidong.js"></script>
+ <link rel="stylesheet" type="text/css" href="../css/yidong.css"/>
+  
+  <!--
+  	作者：2443611475@qq.com
+  	时间：2018-10-21
+  	描述：引入ui组件库
+  -->
+ <script src="../node_modules/_vant@1.3.5@vant/lib/vant.js"></script>
+ <link rel="stylesheet" href="../node_modules/_vant@1.3.5@vant/lib/vant-css/index.css">
+ 	<!--<link rel="stylesheet" href="https://unpkg.com/vant/lib/vant-css/index.css">
+  <script src="https://unpkg.com/vant/lib/vant.min.js"></script>-->
+  
+  <style type="text/css">
+  	body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{margin:0;padding:0;border:0;} body{background:#fff;color:#333;font-size:12px; }  ul,ol{list-style-type:none;} select,input,img,select{vertical-align:middle;}  a{text-decoration:none;} a:link{color:#009;} a:visited{color:#800080;} a:hover,a:active,a:focus{color:#c00;text-decoration:underline;}
+  	div{
+  		box-sizing: border-box;
+  	}
+  	#top{
+  		width: 100%;
+  		height: 1.173333rem;
+  		background: white;
+  		border-top: 0.006666rem solid #DEDEDE;
+  		text-align: center;
+  		position: relative;
+  	}
+  	#top input{
+  		width: 9.2rem;
+  		height: 0.906666rem;
+  		background: #F8F8F8;
+  		border: none;
+  		border-radius: 0.453333rem;
+  		text-align: center;
+  		margin-top: 0.133333rem;
+  	}
+  	
+    .toubiao{
+    	width: 100%;
+    	height: 1.066666rem;
+    	background: #F5F5F5;
+    	line-height: 1.066666rem;
+    	padding-left: 0.453333rem;
+    	box-sizing: border-box;
+    	font-size: 0.48rem;
+    }
+    .boxs{
+    	width:100%;
+    	height: 1.813333rem;
+    	background: white;
+    	border-bottom: 0.013333rem solid #DEDEDE;
+    	line-height: 1.813333rem;
+    	padding-left: 0.4rem;
+    	position: relative;
+    }
+     .img_box{
+     	width: 1.28rem;
+     	height: 1.28rem;
+     	float: left;
+     	margin: 0.266666rem 0.266666rem 0 0;
+     	background: yellowgreen;
+     	border-radius: 50%;
+     }
+     .name{
+     	font-size: 0.373333rem;
+     	float: left;
+     	margin: 0;
+     	/*margin-right: 282px;*/
+     }
+     .img_tai{
+     	width: 0.546666rem;
+     	height: 0.546666rem;
+     	/*float: right;
+     	
+     	margin-top: 0.626666rem;*/
+     	position: absolute;
+     	top: 0.626666rem;
+     	left: 6.56rem;
+     }
+     .ps{
+     	font-size: 0.373333rem;
+     	
+     	position: absolute;
+     	left: 7.373333rem;
+     	
+     }
+     .zuo{
+     	width: 0.173333rem;
+     	height: 0.32rem;
+     	float: right;
+     	margin:0.746666rem 0.4rem 0 0;
+     }
+     	#dle2{
+  			width: 100%;
+  		background:rgba(0,0,0,0.7);
+  		position: fixed;
+  		top: 0;
+  		left: 0;
+  		z-index: 2;
+  	}
+  		#top p{
+  		 font-size: 0.426666rem;
+  		 color: #DEDEDE;
+  		 position: absolute;
+  		 left: 4rem;
+  		 top: 0.293333rem;
+  	}
+  	#top img{
+  		 	width: 0.4rem;
+  		 	height: 0.4rem;
+  		 position: absolute;
+  		 left:3.44rem;
+  		 top: 0.4rem;
+  	}
+  </style>
+</head>
+<body>
+  <div id="app" style="width:100%;float: left;">
+  	  <div id="top">
+  	  	<p v-show="inps" @click="jiaos">搜索学生姓名</p>
+  	  	  <img  v-show="inps"  @click="jiaos" src="../img/sousuo@3x.png" alt="" />
+  	  	<input v-model="inpv" id="inp" @blur.prevent="changeCount()" @focus="inps=false" @input="changeCount()" type="text"  />
+  	  </div>
+  	  
+  	  <div>
+  	   <div class="toubiao">A</div>
+  	   
+  	   <div class="boxs" @click="show2=!show2" >
+  	  	  <div class="img_box"></div>
+  	  	  <p class="name">Alex </p>
+  	  	  <img class="zuo" src="../img/next@2x.png"/>
+  	  	  <p style="color: #6786ED;" class="ps">正常下课</p>
+  	  	  <img class="img_tai" src="../img/zhengcahngxiake@3x.png"/>
+  	   </div>	  
+  	   
+  	   <div class="boxs" @click="show2=!show2" >
+  	  	  <div class="img_box"></div>
+  	  	  <p class="name">Alex </p>
+  	  	  <img class="zuo" src="../img/next@2x.png"/>
+  	  	  <p style="color: #A4CC59;" class="ps">早退</p>
+  	  	  <img class="img_tai" src="../img/zaotui@2x.png"/>
+  	   </div>	
+  	   
+  	   <div class="boxs" @click="show2=!show2" >
+  	  	  <div class="img_box"></div>
+  	  	  <p class="name">Alex </p>
+  	  	  <img class="zuo" src="../img/next@2x.png"/>
+  	  	  <p style="color: #E67BC9;" class="ps">旷课</p>
+  	  	  <img class="img_tai" src="../img/kuangke@3x.png"/>
+  	   </div>	
+  	   
+  	   <div class="boxs" @click="show2=!show2" >
+  	  	  <div class="img_box"></div>
+  	  	  <p class="name">Alex </p>
+  	  	  <img class="zuo" src="../img/next@2x.png"/>
+  	  	  <p style="color: #FC6161;" class="ps">请假</p>
+  	  	  <img class="img_tai" src="../img/qingjia@3x.png"/>
+  	   </div>	
+  	   
+  	   
+  	   
+  	   
+  	   
+  	   
+  	   
+  	   
+  	   
+  	   
+  	   
+  	  </div>
+  	  
+  	  
+  	  
+ <!--
+ 	作者：2443611475@qq.com
+ 	时间：2018-10-11
+ 	描述：底部弹出选项框
+ -->
+  	  <div v-show="show2" id='dle2' @click='show2=false'>
+   		  <van-popup style='' v-model="show2" position="bottom" :overlay="false">
+             <van-picker
+              show-toolbar
+              title=""
+              :columns="columns"
+              @cancel="onCancel"
+              @confirm="onConfirm"
+              @change='ve'
+            />
+       </van-popup>
+   	</div>
+  	  
+    
+  </div>
+</body>
+
+ 
+  
+ 
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: function(){
+        return {
+        	ding_vuale:'正常下课',
+        	columns: ['正常下课', '早退', '旷课', '请假'],
+        	show2:false,
+        		inps:true,
+        	inpv:'',
+        }
+      },
+      methods:{
+      	jiaos(){
+      	 	   this.inps = false;
+      	 	   document.getElementById('inp').focus();
+      	 },
+      	 changeCount(){
+      	 	   this.inpv == ''?this.inps=true:this.inps=false;
+      	 },
+      	 dal(){
+      	 	
+      	 },
+          onConfirm(value, index) {
+//           Toast(`当前值：${value}, 当前索引：${index}`);
+             this.ding_vuale = value;
+         },
+         ve(value,index){
+         	   this.ding_vuale = index;
+//            console.log(index)
+         },
+        onCancel() {
+            this.show2=false;
+       }
+          
+          
+      },
+      mounted(){
+      	  document.getElementById('dle2').style.height = document.documentElement.clientHeight+'px'
+      }
+      
+    })
+  </script>
+</html>
